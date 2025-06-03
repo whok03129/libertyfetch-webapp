@@ -9,7 +9,7 @@
   <style>
     body {
       font-family: 'Nunito', sans-serif;
-      background: url('https://i.ibb.co/VpK2hRH/otaku-shop-bg.jpg') no-repeat center center fixed;
+      background: url('https://images2.alphacoders.com/113/1139745.jpg') no-repeat center center fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
@@ -58,7 +58,7 @@
     <input type="text" id="name" placeholder="👤 Full Name" />
     <input type="text" id="productName" placeholder="📦 Product Name" />
     <input type="text" id="productLink" placeholder="🔗 Product Link" />
-    <input type="text" id="street" placeholder="🏡 house no./ apt / Street / Area / Road" />
+    <input type="text" id="street" placeholder="🏡 house no. / apt / street / area / road" />
     <input type="text" id="city" placeholder="🌆 City" />
     <input type="text" id="country" placeholder="🗺️ Country" />
     <input type="text" id="zip" placeholder="📮 ZIP Code" />
@@ -67,23 +67,18 @@
   </div>
 
   <script>
+    const tg = window.Telegram.WebApp;
+
     function submitOrder() {
-      const tg = window.Telegram.WebApp;
-
-      if (!tg) {
-        alert("❌ Please open this form inside the Telegram app.");
-        return;
-      }
-
       const data = {
-        name: document.getElementById('name').value,
-        productName: document.getElementById('productName').value,
-        productLink: document.getElementById('productLink').value,
-        street: document.getElementById('street').value,
-        city: document.getElementById('city').value,
-        country: document.getElementById('country').value,
-        zip: document.getElementById('zip').value,
-        contact: document.getElementById('contact').value
+        name: document.getElementById('name').value.trim(),
+        productName: document.getElementById('productName').value.trim(),
+        productLink: document.getElementById('productLink').value.trim(),
+        street: document.getElementById('street').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        country: document.getElementById('country').value.trim(),
+        zip: document.getElementById('zip').value.trim(),
+        contact: document.getElementById('contact').value.trim()
       };
 
       tg.sendData(JSON.stringify(data));
