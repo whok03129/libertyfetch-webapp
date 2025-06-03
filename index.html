@@ -67,9 +67,14 @@
   </div>
 
   <script>
-    const tg = window.Telegram.WebApp;
-
     function submitOrder() {
+      const tg = window.Telegram.WebApp;
+
+      if (!tg) {
+        alert("❌ Please open this form inside the Telegram app.");
+        return;
+      }
+
       const data = {
         name: document.getElementById('name').value,
         productName: document.getElementById('productName').value,
