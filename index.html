@@ -55,38 +55,35 @@
 <body>
   <div class="form-container">
     <h2>🌸 LibertyFetch Order Form</h2>
-    <input type="text" id="name" placeholder="👤 Full Name" required />
-    <input type="text" id="productName" placeholder="📦 Product Name" required />
-    <input type="text" id="productLink" placeholder="🔗 Product Link" required />
-    <input type="text" id="street" placeholder="🏡 house no. / apt / street / area / road" required />
-    <input type="text" id="city" placeholder="🌆 City" required />
-    <input type="text" id="country" placeholder="🗺️ Country" required />
-    <input type="text" id="zip" placeholder="📮 ZIP Code" required />
-    <input type="text" id="contact" placeholder="📱 Email or WhatsApp" required />
+    <input type="text" id="name" placeholder="👤 Full Name" />
+    <input type="text" id="productName" placeholder="📦 Product Name" />
+    <input type="text" id="productLink" placeholder="🔗 Product Link" />
+    <input type="text" id="street" placeholder="🏡 House / Apt / Street / Area / Road" />
+    <input type="text" id="city" placeholder="🌆 City" />
+    <input type="text" id="country" placeholder="🗺️ Country" />
+    <input type="text" id="zip" placeholder="📮 ZIP Code" />
+    <input type="text" id="contact" placeholder="📱 Email or WhatsApp" />
     <button onclick="submitOrder()">Place Order</button>
   </div>
 
   <script>
     const tg = window.Telegram.WebApp;
+    tg.expand();
 
     function submitOrder() {
-      const fields = ['name', 'productName', 'productLink', 'street', 'city', 'country', 'zip', 'contact'];
-      const data = {};
-
-      for (let field of fields) {
-        const value = document.getElementById(field).value.trim();
-        if (!value) {
-          alert("⚠️ Please fill in all fields.");
-          return;
-        }
-        data[field] = value;
-      }
+      const data = {
+        name: document.getElementById('name').value.trim(),
+        productName: document.getElementById('productName').value.trim(),
+        productLink: document.getElementById('productLink').value.trim(),
+        street: document.getElementById('street').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        country: document.getElementById('country').value.trim(),
+        zip: document.getElementById('zip').value.trim(),
+        contact: document.getElementById('contact').value.trim()
+      };
 
       tg.sendData(JSON.stringify(data));
-      
-      setTimeout(() => {
-        tg.close();
-      }, 500);  // Delay to ensure data is sent before closing
+      tg.close();
     }
   </script>
 </body>
